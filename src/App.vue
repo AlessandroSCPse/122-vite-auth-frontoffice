@@ -1,11 +1,15 @@
 <script>
-export default {
+import PostList from './components/PostList.vue';
 
+export default {
+  components: {
+    PostList
+  }
 }
 </script>
 
 <template>
-  <h1>ciao ciao</h1>
+  <PostList></PostList>
 </template>
 
 <style lang="scss">
