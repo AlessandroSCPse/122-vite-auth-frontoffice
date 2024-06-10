@@ -3,6 +3,18 @@ export default {
     name: 'SinglePost',
     props: {
         postDetails: Object
+    },
+    methods: {
+        truncateText(text) {
+            // Se il testo è più lungo di 100 caratteri
+            // lo taglio a 100 caratteri e aggiungo ...
+            // altrimenti il testo non lo tocco
+            if(text.length > 100) {
+                return text.substr(0, 99) + '...';
+            }
+
+            return text;
+        }
     }
 }
 </script>
@@ -20,7 +32,7 @@ export default {
                 <div v-if="postDetails.tags.length > 0">
                     <strong>Tags</strong>: <span v-for="tag in postDetails.tags">{{ tag.name }} &nbsp;</span>
                 </div>
-                <p v-if="postDetails.content" class="card-text">{{ postDetails.content }}</p>
+                <p v-if="postDetails.content" class="card-text">{{ truncateText(postDetails.content) }}</p>
                  <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
             </div>
         </div>
