@@ -21,7 +21,6 @@ export default {
 
 <template>
     <div class="card my-3">
-        <!-- <img src="..." class="card-img-top" alt="..."> -->
         <div class="card-body">
             <h5 class="card-title">{{ postDetails.title }}</h5>
             <div v-if="postDetails.category">
@@ -32,7 +31,7 @@ export default {
                 <strong>Tags</strong>: <span v-for="tag in postDetails.tags">{{ tag.name }} &nbsp;</span>
             </div>
             <p v-if="postDetails.content" class="card-text">{{ truncateText(postDetails.content) }}</p>
-            <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+            <router-link :to="{ name: 'single-post', params: {slug: postDetails.slug } }" class="btn btn-primary">Read more</router-link>
         </div>
     </div>
 </template>
