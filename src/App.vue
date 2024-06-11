@@ -1,10 +1,8 @@
 <script>
-import PostList from './components/PostList.vue';
 import AppHeader from './components/AppHeader.vue';
 
 export default {
   components: {
-    PostList,
     AppHeader
   }
 }
