@@ -1,15 +1,18 @@
 <script>
 import PostList from './components/PostList.vue';
+import AppHeader from './components/AppHeader.vue';
 
 export default {
   components: {
-    PostList
+    PostList,
+    AppHeader
   }
 }
 </script>
 
 <template>
-  <PostList></PostList>
+  <AppHeader></AppHeader>
+  <router-view></router-view>
 </template>
 
 <style lang="scss">
