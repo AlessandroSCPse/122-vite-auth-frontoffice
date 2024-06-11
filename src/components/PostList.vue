@@ -1,11 +1,11 @@
 <script>
 import axios from 'axios';
-import SinglePost from './SinglePost.vue';
+import PostCard from './PostCard.vue';
 
 export default {
     name: 'PostList',
     components: {
-        SinglePost
+        PostCard
     },
     data() {
         return {
@@ -39,9 +39,11 @@ export default {
 <template>
     <div class="container">
         <h1>Tutti i post</h1>
-        {{ currentPage }}
+
         <div class="row row-cols-3">
-            <SinglePost v-for="post in posts" :postDetails="post" :key="post.id"></SinglePost>
+            <div class="col" v-for="post in posts" :key="post.id">
+                <PostCard :postDetails="post"></PostCard>
+            </div>
         </div>
 
         <nav aria-label="Page navigation example">
