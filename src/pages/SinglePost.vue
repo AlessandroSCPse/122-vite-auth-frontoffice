@@ -1,16 +1,18 @@
 <script>
 import axios from 'axios';
+import { store } from '../store.js';
 
 export default {
     name: 'SinglePost',
     data() {
         return {
+            store,
             post: null
         };
     },
     methods: {
         getPostDetails() {
-            axios.get(`http://127.0.0.1:8000/api/posts/${this.$route.params.slug}`)
+            axios.get(`${this.store.apiBaseUrl}/api/posts/${this.$route.params.slug}`)
             .then((response) => {
 
                 if(response.data.success) {
@@ -33,7 +35,7 @@ export default {
             <h1>{{ post.title }}</h1>
 
             <div v-if="post.cover_image">
-                <img :src="`http://127.0.0.1:8000/storage/${post.cover_image}`" :alt="post.title">
+                <img :src="`${this.store.apiBaseUrl}/storage/${post.cover_image}`" :alt="post.title">
             </div>
 
             <p v-if="post.content">

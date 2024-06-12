@@ -1,5 +1,6 @@
 <script>
 import axios from 'axios';
+import { store } from '../store.js';
 import PostCard from '../components/PostCard.vue';
 
 export default {
@@ -9,6 +10,7 @@ export default {
     },
     data() {
         return {
+            store,
             currentPage: 1,
             prevPageUrl: null,
             nextPageUrl: null,
@@ -17,7 +19,7 @@ export default {
     },
     methods: {
         getPosts(pageNumber) {
-            axios.get('http://127.0.0.1:8000/api/posts', {
+            axios.get(`${this.store.apiBaseUrl}/api/posts`, {
                 params: {
                     page: pageNumber
                 }
