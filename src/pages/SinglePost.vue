@@ -1,17 +1,23 @@
 <script>
 import axios from 'axios';
 import { store } from '../store.js';
+import Loader from '../components/Loader.vue';
 
 export default {
     name: 'SinglePost',
+    components: {
+        Loader
+    },
     data() {
         return {
             store,
-            post: null
+            post: null,
+            loading: true
         };
     },
     methods: {
         getPostDetails() {
+            this.loading = true;
             axios.get(`${this.store.apiBaseUrl}/api/posts/${this.$route.params.slug}`)
             .then((response) => {
 
@@ -20,6 +26,8 @@ export default {
                 } else {
                     this.$router.push({name: 'not-found'});
                 }
+                
+                this.loading = false;
             });
         }
     },
@@ -41,6 +49,9 @@ export default {
             <p v-if="post.content">
                 {{ post.content }}
             </p>
+        </div>
+        <div v-else>
+            <Loader></Loader>
         </div>
     </div>
 </template>

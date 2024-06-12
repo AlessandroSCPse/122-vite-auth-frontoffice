@@ -2,11 +2,13 @@
 import axios from 'axios';
 import { store } from '../store.js';
 import PostCard from '../components/PostCard.vue';
+import Loader from '../components/Loader.vue';
 
 export default {
     name: 'PostList',
     components: {
-        PostCard
+        PostCard,
+        Loader
     },
     data() {
         return {
@@ -14,11 +16,14 @@ export default {
             currentPage: 1,
             prevPageUrl: null,
             nextPageUrl: null,
-            posts: []
+            posts: [],
+            loading: false
         };
     },
     methods: {
         getPosts(pageNumber) {
+            this.loading = true;
+
             axios.get(`${this.store.apiBaseUrl}/api/posts`, {
                 params: {
                     page: pageNumber
@@ -29,6 +34,7 @@ export default {
                 this.currentPage = response.data.results.current_page;
                 this.prevPageUrl = response.data.results.prev_page_url;
                 this.nextPageUrl = response.data.results.next_page_url;
+                this.loading = false;
             });
         }
     },
@@ -42,10 +48,13 @@ export default {
     <div class="container">
         <h1>Tutti i post</h1>
 
-        <div class="row row-cols-3">
+        <div v-if="!loading" class="row row-cols-3">
             <div class="col" v-for="post in posts" :key="post.id">
                 <PostCard :postDetails="post"></PostCard>
             </div>
+        </div>
+        <div v-else>
+            <Loader></Loader>
         </div>
 
         <nav aria-label="Page navigation example">
