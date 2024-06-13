@@ -5,6 +5,7 @@ import AppAbout from './pages/AppAbout.vue';
 import PostList from './pages/PostList.vue';
 import SinglePost from './pages/SinglePost.vue';
 import NotFound from './pages/NotFound.vue';
+import AppContactUs from './pages/AppContactUs.vue';
 
 const router = createRouter({	
     history: createWebHistory(),
@@ -29,6 +30,12 @@ const router = createRouter({
             name: 'single-post',
             component: SinglePost
         },
+        {
+            path: '/contact-us',
+            name: 'contact-us',
+            component: AppContactUs
+        },
+        // 404 not found rule
         {
             path: "/:pathMatch(.*)*",
             name: "not-found",
