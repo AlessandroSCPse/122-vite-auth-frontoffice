@@ -1,5 +1,6 @@
 <script>
 import axios from 'axios';
+import { store } from '../store.js';
 
 // Quando l'utente invia il form
 // leggiamo i campi del form
@@ -12,6 +13,7 @@ export default {
     name: 'AppContactForm',
     data() {
         return {
+            store,
             userName: '',
             userEmail: '',
             userMessage: '',
@@ -30,7 +32,7 @@ export default {
 
             this.isLoading = true;
 
-            axios.post('http://127.0.0.1:8000/api/contacts', userData)
+            axios.post(`${this.store.apiBaseUrl}/api/contacts`, userData)
             .then(response => {
                 this.success = response.data.success;
 
