@@ -100,7 +100,7 @@ export default {
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="1" id="accepted_tc" v-model="userAcceptedTC">
                 <label class="form-check-label" for="accepted_tc">
-                    Accetta termini e condizioni
+                    I accept terms and conditions. For more information about this please read <router-link :to="{name: 'terms-and-conditions'}" target="_blank">this page</router-link>.
                 </label>
             </div>
         </div>
