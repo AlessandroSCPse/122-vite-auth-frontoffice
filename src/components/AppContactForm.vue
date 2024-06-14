@@ -17,6 +17,7 @@ export default {
             userName: '',
             userEmail: '',
             userMessage: '',
+            userAcceptedTC: '',
             errors: {},
             success: null,
             isLoading: false
@@ -28,6 +29,7 @@ export default {
                 name: this.userName,
                 email: this.userEmail,
                 message: this.userMessage,
+                accepted_tc: this.userAcceptedTC
             };
 
             this.isLoading = true;
@@ -42,6 +44,7 @@ export default {
                     this.userName = '';
                     this.userEmail = '';
                     this.userMessage = '';
+                    this.userAcceptedTC = '';
                 } else {
                     // Salviamo gli errori nei data
                     this.errors = response.data.errors;
@@ -89,6 +92,21 @@ export default {
 
         <div v-if="errors.message">
             <div v-for="error in errors.message" class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="1" id="accepted_tc" v-model="userAcceptedTC">
+                <label class="form-check-label" for="accepted_tc">
+                    Accetta termini e condizioni
+                </label>
+            </div>
+        </div>
+
+        <div v-if="errors.accepted_tc">
+            <div v-for="error in errors.accepted_tc" class="alert alert-danger" role="alert">
                 {{ error }}
             </div>
         </div>
